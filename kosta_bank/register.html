@@ -1,0 +1,159 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <link rel="stylesheet" href="css/navbar.css" type="text/css" />
+    <link rel="stylesheet" href="css/common.css" type="text/css" />
+    <link rel="stylesheet" href="css/footer.css" type="text/css" />
+    <title>IT's KOSTA - register</title>
+    <style>
+      main {
+        padding: 20px 0px; /*상하 좌우*/
+      }
+      main h1 {
+        text-align: center;
+        padding: 5px;
+      }
+
+      main form {
+        height: 350px;
+        border: 1px solid gray;
+        padding: 40px;
+      }
+
+      main .form-item {
+        margin-bottom: 10px;
+      }
+
+      main .form-item label {
+        display: inline-block;
+        width: 150px;
+        font-size: 18px;
+      }
+
+      main .form-item input {
+        font-size: 18px;
+        border: 1px skyblue solid;
+        width: 200px;
+      }
+
+      main form button {
+        float: right;
+        width: 120px;
+        font-size: 18px;
+        padding: 5px;
+        margin-top: 10px;
+      }
+    </style>
+  </head>
+  <body>
+    <header>
+      <nav>
+        <!-- 5개의 메뉴생성 -->
+        <ul>
+          <li class="logo">
+            <a href="index.html"
+              ><img src="images/logo.jpg" alt="로고입니다."
+            /></a>
+          </li>
+          <li><a href="./personal.html">개인</a></li>
+          <li><a href="busines.html">기업</a></li>
+          <li><a href="login.html">로그인</a></li>
+          <li><a href="register.html">회원가입</a></li>
+        </ul>
+      </nav>
+    </header>
+
+    <div id="banner">지금 당신의 행복! IT's KOSTA Life!</div>
+
+    <main>
+      <h1>Register</h1>
+      <form action="index.html" method="get" novalidate="novalidate">
+        <div class="form-item">
+          <label for="name">이름</label>
+          <input
+            type="text"
+            id="name"
+            name="name"
+            required="required"
+            autofocus
+          />
+        </div>
+
+        <div class="form-item">
+          <label for="email">이메일</label>
+          <input type="email" id="email" name="email" required />
+        </div>
+
+        <div class="form-item">
+          <label for="phone">연락처</label>
+          <input type="text" id="phone" name="phone" />
+        </div>
+
+        <div class="form-item">
+          <label for="password">비밀번호</label>
+          <input type="password" id="password" name="password" />
+        </div>
+
+        <div class="form-item">
+          <label for="password2">비밀번호 확인</label>
+          <input type="password" id="password2" name="password2" />
+        </div>
+
+        <hr />
+        <button type="button" id="registerBtn">회원 가입</button>
+      </form>
+    </main>
+
+    <footer>
+      <ul>
+        <li>경기도 성남시 오리역 한국소프트웨어진흥협회</li>
+        <li>02-0000-0000</li>
+      </ul>
+    </footer>
+  </body>
+  <script>
+    const validateCheck = function (ele, message) {
+      if (ele.value === "") {
+        alert(message);
+        ele.focus();
+        return true; // 유효성 체크 실패
+      } else return false; // 유효성 체크 성공
+    };
+
+    document
+      .querySelector("#registerBtn")
+      .addEventListener("click", function () {
+        // 공백, 문자열, 숫자 유효성 검사 체크
+        const nameEle = document.querySelector("#name");
+        const emailEle = document.querySelector("#email");
+        const phoneEle = document.querySelector("#phone");
+        const passwordEle = document.querySelector("#password");
+        const password2Ele = document.querySelector("#password2");
+
+        if (validateCheck(nameEle, "이름을 입력해주세요.")) return;
+        if (validateCheck(emailEle, "이메일을 입력해주세요.")) return;
+        if (validateCheck(phoneEle, "번호를 입력해주세요.")) return;
+        if (validateCheck(passwordEle, "비밀번호를 입력해주세요.")) return;
+        if (validateCheck(password2Ele, "비밀번호를 입력해주세요.")) return;
+
+        // 이메일 @ 체크
+        if (emailEle.value.indexOf("@") === -1) {
+          alert("이메일 형식이 아닙니다.");
+          emailEle.focus();
+          return;
+        }
+
+        // 핸드폰 번호 010-0000-0000 체크
+
+        // 비밀번호 이중체크
+        if (passwordEle.value !== password2Ele.value) {
+          alert("비밀번호가 일치하지 않습니다.");
+          password2Ele.focus();
+          return;
+        }
+
+        document.querySelector("form").submit();
+      });
+  </script>
+</html>
