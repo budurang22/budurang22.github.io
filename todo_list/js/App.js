@@ -50,6 +50,9 @@ document
     const inputEdit = document.querySelector(".Editor > input");
     // console.log(inputEdit.value);
 
+    if (inputEdit.value.trim() === "") {
+      return alert("할 일을 작성해주세요.");
+    }
     const newTodo = {
       id: idIndex,
       isDone: false,
