@@ -69,10 +69,11 @@ document
 // 체크박스 추가
 const onUpdate = (targetId) => {
   // TodoItem에서 호출할 때 전달한 id
-  mockData.forEach((todo) => {
+  mockData = mockData.map((todo) => {
     if (todo.id === targetId) {
-      todo.isDone = !todo.isDone;
+      return { ...todo, isDone: !todo.isDone };
     }
+    return todo;
   });
   // console.log(mockData);
 
