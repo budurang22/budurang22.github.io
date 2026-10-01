@@ -1,5 +1,3 @@
-
-
 // DOM 요소
 const fruitList = document.getElementById("fruitList");
 const veggieList = document.getElementById("veggieList");
@@ -11,10 +9,10 @@ const loadMoreBtn = document.getElementById("loadMoreBtn");
 let veggiePage = 0;
 
 // 카드 렌더링 함수
-function renderProducts(data, container) {//data는 과일 또는 야채의 배열
-  console.log(data)
+function renderProducts(data, container) {
+  //data는 과일 또는 야채의 배열
   container.innerHTML = "";
-  data.forEach(item => {
+  data.forEach((item) => {
     container.innerHTML += `
       <div class="col-md-4">
         <div class="card h-100 shadow-sm">
@@ -34,20 +32,32 @@ function renderProducts(data, container) {//data는 과일 또는 야채의 배�
   과일 출력
 */
 function filterAndSortFruits() {
+  // 검색 기능
+  const keyword = searchBox.value;
+  const filteredFruits = fruits.filter((fruit) => fruit.name.includes(keyword));
 
-  
+  // select 기능
+  const sortType = sortSelect.value;
 
-   //화면에 다시 출력
-  //renderProducts(?, ?);
+  if (sortType === "name") {
+    filteredFruits.sort((a, b) => a.name.localeCompare(b.name));
+  } else if (sortType === "low") {
+    filteredFruits.sort((a, b) => a.price - b.price);
+  } else if (sortType === "high") {
+    filteredFruits.sort((a, b) => b.price - a.price);
+  }
+
+  //화면에 다시 출력
+  renderProducts(filteredFruits, fruitList);
 }
 
 // 채소 출력 (3개씩 증가)
 function loadVeggies() {
-  
+  veggiePage++;
+  const visibleVeggies = veggies.slice(0, veggiePage * 3);
 
-
-   //화면에 다시 출력
-  //renderProducts(?, ?);
+  //화면에 다시 출력
+  renderProducts(visibleVeggies, veggieList);
 }
 ////////////////////////////////////////////////////////
 
