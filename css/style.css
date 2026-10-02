@@ -1,15 +1,24 @@
-/* ===== 색상 변수 (화이트 테마) ===== */
+/* ===== 색상 변수 (Mono Blue: 무채색 + 블루 한 가지) ===== */
+/* NOTE: 변수 이름은 색 이름(cyan 등)이 아니라 역할 이름 → 색을 바꿔도 이름이 어긋나지 않음 */
 :root {
   --bg: #ffffff;
-  --card: #fafafa;
-  --surface: #f4f4f5;
+  --card: #f9f9fa;
+  --surface: #f2f3f5;
   --border: rgba(0, 0, 0, 0.08);
   --border-strong: rgba(0, 0, 0, 0.16);
-  --text: #18181b;
-  --sub: #52525b;
-  --muted: #71717a;
-  --cyan: #0891b2;
-  --violet: #7c3aed;
+  --text: #111214;
+  --sub: #4b4f58;
+  --muted: #6e737d;
+  --btn-hover: #2a2d33;
+
+  /* 포인트 색 (같은 블루 계열 진한/밝은 두 단계) */
+  --accent: #2457d6;
+  --accent-2: #3b82f6;
+  --accent-line: rgba(36, 87, 214, 0.3);
+  --glow-1: rgba(36, 87, 214, 0.08);
+  --glow-2: rgba(59, 130, 246, 0.06);
+
+  /* 의미 색: 상태 표시(구직 중 점), diff 박스 */
   --green: #16a34a;
 
   color-scheme: light;
@@ -38,7 +47,7 @@ body {
   -webkit-font-smoothing: antialiased;
 }
 
-/* 상단의 은은한 보라/청록 빛 + 모눈 배경 */
+/* 상단의 은은한 블루 빛 + 모눈 배경 */
 body::before,
 body::after {
   content: "";
@@ -51,8 +60,8 @@ body::after {
 
 body::before {
   background:
-    radial-gradient(640px 320px at 20% -80px, rgba(124, 58, 237, 0.1), transparent 70%),
-    radial-gradient(520px 280px at 78% -60px, rgba(8, 145, 178, 0.08), transparent 70%);
+    radial-gradient(640px 320px at 20% -80px, var(--glow-1), transparent 70%),
+    radial-gradient(520px 280px at 78% -60px, var(--glow-2), transparent 70%);
 }
 
 body::after {
@@ -78,7 +87,7 @@ button {
 }
 
 :focus-visible {
-  outline: 2px solid var(--cyan);
+  outline: 2px solid var(--accent);
   outline-offset: 2px;
 }
 
@@ -104,7 +113,7 @@ button {
 .gradient-text {
   font-style: normal;
   font-weight: 600;
-  background: linear-gradient(90deg, var(--cyan), var(--violet));
+  background: linear-gradient(90deg, var(--accent), var(--accent-2));
   -webkit-background-clip: text;
   background-clip: text;
   color: transparent;
@@ -129,7 +138,7 @@ button {
 }
 
 .btn--solid:hover {
-  background-color: #3f3f46;
+  background-color: var(--btn-hover);
 }
 
 .btn--line {
@@ -176,7 +185,7 @@ button {
   width: 18px;
   height: 18px;
   border-radius: 5px;
-  background: linear-gradient(135deg, var(--cyan), var(--violet));
+  background: linear-gradient(135deg, var(--accent), var(--accent-2));
 }
 
 .nav {
@@ -417,7 +426,7 @@ button {
   pointer-events: none;
   opacity: 0;
   transition: opacity 0.3s;
-  background: radial-gradient(260px circle at var(--x, 50%) var(--y, 50%), rgba(8, 145, 178, 0.06), transparent 60%);
+  background: radial-gradient(260px circle at var(--x, 50%) var(--y, 50%), var(--glow-2), transparent 60%);
 }
 
 .cell:hover {
@@ -532,7 +541,7 @@ button {
   content: "→";
   margin-right: 10px;
   font-family: "Geist Mono", monospace;
-  color: var(--cyan);
+  color: var(--accent);
 }
 
 /* ===== 4. 섹션 공통 ===== */
@@ -566,20 +575,21 @@ button {
 }
 
 /* ===== 경력 ===== */
+/* 가로로 긴 카드: 왼쪽 회사 정보 | 오른쪽 업무 내용 */
 .exp {
-  justify-content: flex-start;
-  gap: 24px;
+  display: grid;
+  grid-template-columns: 240px 1fr;
+  gap: 32px;
   padding: 28px;
 }
 
 .exp__head {
   display: flex;
-  flex-wrap: wrap;
-  justify-content: space-between;
-  align-items: baseline;
+  flex-direction: column;
+  align-items: flex-start;
   gap: 8px;
-  padding-bottom: 20px;
-  border-bottom: 1px solid var(--border);
+  padding-right: 28px;
+  border-right: 1px solid var(--border);
 }
 
 .exp__company {
@@ -626,15 +636,20 @@ button {
 }
 
 /* ===== 프로젝트 카드 ===== */
+/* 한 줄에 프로젝트 하나 (가로로 긴 카드) */
 .projects {
   display: grid;
-  grid-template-columns: repeat(2, 1fr);
+  grid-template-columns: 1fr;
   gap: 12px;
 }
 
+/* 왼쪽 스크린샷 | 오른쪽 설명 */
 .project {
-  justify-content: flex-start;
-  padding: 12px;
+  display: grid;
+  grid-template-columns: 360px 1fr;
+  align-items: start;
+  gap: 28px;
+  padding: 16px;
 }
 
 .project__thumb {
@@ -649,15 +664,33 @@ button {
   color: var(--muted);
 }
 
+/* 이미지가 들어오면 16:10 고정을 풀고 이미지 원래 비율 그대로 표시 (잘림 방지)
+   NOTE: :has() = "이 요소 안에 img가 있으면" 이라는 조건 선택자 */
+.project__thumb:has(img) {
+  aspect-ratio: auto;
+}
+
 .project__thumb img {
+  display: block;
   width: 100%;
-  height: 100%;
-  object-fit: cover;
-  object-position: top;
+  height: auto;
+}
+
+/* 왼쪽 영역: 이미지 + 안내 문구 */
+.project__media {
+  display: grid;
+  gap: 8px;
+  margin: 0;
+}
+
+.project__caption {
+  font-size: 12.5px;
+  line-height: 1.5;
+  color: var(--muted);
 }
 
 .project__body {
-  padding: 8px 8px 6px;
+  padding: 4px 8px 4px 0;
 }
 
 .project__title {
@@ -681,7 +714,7 @@ button {
 }
 
 .project__title a:hover {
-  color: var(--cyan);
+  color: var(--accent);
 }
 
 .project:hover .project__arrow {
@@ -712,7 +745,7 @@ button {
   cursor: pointer;
   font-family: "Geist Mono", monospace;
   font-size: 13px;
-  color: var(--violet);
+  color: var(--accent);
 }
 
 .trouble summary:hover {
@@ -818,19 +851,46 @@ button {
 }
 
 .stack .tags li {
+  display: inline-flex;
+  align-items: center;
+  gap: 6px;
+  padding: 4px 10px;
+  background-color: var(--bg);
   font-size: 15px;
   color: var(--text);
+  transition: border-color 0.2s;
 }
 
-/* 지금 배우는 기술은 점선 + 청록색으로 구분 */
+/* 아이콘: 평소엔 회색(Mono Blue 톤 유지), 마우스를 올리면 원래 로고 색 */
+.tags__icon {
+  width: 16px;
+  height: 16px;
+  object-fit: contain;
+  filter: grayscale(1);
+  opacity: 0.7;
+  transition:
+    filter 0.2s,
+    opacity 0.2s;
+}
+
+.stack .tags li:hover {
+  border-color: var(--border-strong);
+}
+
+.stack .tags li:hover .tags__icon {
+  filter: none;
+  opacity: 1;
+}
+
+/* 지금 배우는 기술은 점선 + 포인트 색으로 구분 */
 .cell--learning {
   border-style: dashed;
-  border-color: rgba(8, 145, 178, 0.35);
+  border-color: var(--accent-line);
 }
 
 .cell--learning .tags li {
-  border-color: rgba(8, 145, 178, 0.35);
-  color: var(--cyan);
+  border-color: var(--accent-line);
+  color: var(--accent);
 }
 
 /* ===== 교육 / 자격 ===== */
@@ -902,7 +962,7 @@ button {
   border: 1px solid var(--border);
   border-radius: 20px;
   background:
-    radial-gradient(400px 200px at 100% 0%, rgba(8, 145, 178, 0.07), transparent 70%),
+    radial-gradient(400px 200px at 100% 0%, var(--glow-1), transparent 70%),
     var(--card);
 }
 
@@ -1009,8 +1069,8 @@ button {
   position: absolute;
   inset: 0;
   background:
-    radial-gradient(500px 300px at 35% 40%, rgba(124, 58, 237, 0.12), transparent 70%),
-    radial-gradient(420px 260px at 65% 60%, rgba(8, 145, 178, 0.1), transparent 70%);
+    radial-gradient(500px 300px at 35% 40%, var(--glow-1), transparent 70%),
+    radial-gradient(420px 260px at 65% 60%, var(--glow-2), transparent 70%);
 }
 
 .splash__inner {
@@ -1026,7 +1086,7 @@ button {
   height: 36px;
   margin-bottom: 8px;
   border-radius: 10px;
-  background: linear-gradient(135deg, var(--cyan), var(--violet));
+  background: linear-gradient(135deg, var(--accent), var(--accent-2));
   animation: splash-pop 0.6s cubic-bezier(0.2, 0.7, 0.2, 1) both;
 }
 
@@ -1057,7 +1117,7 @@ button {
   content: "";
   display: block;
   height: 100%;
-  background: linear-gradient(90deg, var(--cyan), var(--violet));
+  background: linear-gradient(90deg, var(--accent), var(--accent-2));
   transform-origin: left;
   animation: splash-fill 3s linear forwards;
 }
@@ -1141,9 +1201,23 @@ button {
   }
 
   .projects,
+  .project,
+  .exp,
   .edu,
   .exp__groups {
     grid-template-columns: 1fr;
+  }
+
+  /* 세로로 쌓일 때는 회사 정보 구분선을 오른쪽 → 아래쪽으로 */
+  .exp__head {
+    padding: 0 0 20px;
+    border-right: 0;
+    border-bottom: 1px solid var(--border);
+  }
+
+  .exp,
+  .project {
+    gap: 16px;
   }
 
   .practice {
