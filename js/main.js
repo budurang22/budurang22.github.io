@@ -43,10 +43,18 @@ const projects = [
     title: "PawMart",
     meta: "팀 프로젝트 개인 리뉴얼 · AI 페어 프로그래밍 · 2026.04 — 05",
     desc: "기존 팀 프로젝트를 Claude Code로 재구축한 반려동물 쇼핑몰",
-    tags: ["React", "TypeScript", "Spring Boot", "JPA", "MySQL", "JWT", "Toss Payments"],
+    tags: [
+      "React",
+      "TypeScript",
+      "Spring Boot",
+      "JPA",
+      "MySQL",
+      "JWT",
+      "Toss Payments",
+    ],
     img: "img/paw-mart.png",
     // TODO: PDF 이메일 통일 후 "pawmart.pdf" 또는 GitHub 주소 넣기
-    link: "",
+    link: "https://github.com/budurang22/paw-mart.git",
     added: [
       "디자인 시안 4종을 비교해 최종안 선정",
       "AI 작업 원칙 수립 후 단계별 커밋으로 진행",
