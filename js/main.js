@@ -45,7 +45,7 @@ const projects = [
     // TODO: 설명, 기간, 사용 기술 채우기 / link에 발표자료(pptx) 또는 GitHub 주소 넣기
     desc: "프로젝트 한 줄 설명",
     tags: [],
-    img: "",
+    img: "img/paw-mart.png",
     link: "",
     added: [],
     trouble: null,
