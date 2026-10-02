@@ -41,14 +41,21 @@ const projects = [
   },
   {
     title: "PawMart",
-    meta: "팀 프로젝트",
-    // TODO: 설명, 기간, 사용 기술 채우기 / link에 발표자료(pptx) 또는 GitHub 주소 넣기
-    desc: "프로젝트 한 줄 설명",
-    tags: [],
+    meta: "팀 프로젝트 개인 리뉴얼 · AI 페어 프로그래밍 · 2026.04 — 05",
+    desc: "기존 팀 프로젝트를 Claude Code로 재구축한 반려동물 쇼핑몰",
+    tags: ["React", "TypeScript", "Spring Boot", "JPA", "MySQL", "JWT", "Toss Payments"],
     img: "img/paw-mart.png",
+    // TODO: PDF 이메일 통일 후 "pawmart.pdf" 또는 GitHub 주소 넣기
     link: "",
-    added: [],
-    trouble: null,
+    added: [
+      "디자인 시안 4종을 비교해 최종안 선정",
+      "AI 작업 원칙 수립 후 단계별 커밋으로 진행",
+    ],
+    trouble: {
+      problem: "AI가 작성한 통합 테스트에서 동시 주문 시 재고 오류 발견",
+      solution: "AI에게 원인 분석을 요청 → Optimistic Lock(@Version) 적용",
+      result: "통합 테스트로 동시 주문 시 재고 정합성 확인",
+    },
   },
 ];
 
