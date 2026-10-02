@@ -2,11 +2,14 @@
 // link가 빈 문자열이면 클릭되지 않는 카드로 표시됨 (회사 업무처럼 공개 링크가 없는 경우)
 const projects = [
   {
-    title: "재난 장비 관리자 시스템",
+    title: "운영지원시스템",
     meta: "㈜우보재난시스템 · 실무 · 2023.10 — 2026.07",
     desc: "재난 장비 상태 모니터링 · 점검 이력 관리 웹",
-    tags: ["Vue 3", "Node.js", "MySQL", "JWT", "Kakao Map API"],
-    img: "",
+    tags: ["Vue 3", "Node.js", "Nestjs", "MariaDB", "JWT", "Kakao Map API"],
+    // NOTE: 보안을 위해 실제 화면이 아닌 가짜 데이터로 재구성한 대체 이미지
+    img: "img/ops-dashboard-sample.png",
+    // 이미지 아래에 표시할 안내 문구 (없으면 생략)
+    imgNote: "보안을 위해 실제 화면 대신 재구성한 대체 이미지입니다.",
     link: "",
     // 내가 직접 개선한 것 (diff 박스로 표시됨)
     added: ["JWT 인증 + 카카오맵 장비 위치", "점검 이력 관리 기능 개선"],
@@ -22,7 +25,7 @@ const projects = [
     meta: "2인 팀 프로젝트 · 2026.08.27 — 2026.09.15",
     desc: "낚시 · 판매 · 낚싯대 구매로 도감을 채우는 Java 콘솔 게임",
     tags: ["Java", "JDBC", "MySQL", "Git"],
-    img: "",
+    img: "img/gotcha-fish.png",
     link: "https://github.com/Gotcha-Fish/Gotcha-Fish",
     added: [
       "낚시터 · 물고기 · 도감 · 낚시하기 도메인 담당",
@@ -82,7 +85,8 @@ function renderProjects(data) {
   let html = "";
 
   data.forEach((project) => {
-    const { title, meta, desc, tags, img, link, added, trouble } = project;
+    const { title, meta, desc, tags, img, imgNote, link, added, trouble } =
+      project;
     const thumb = img
       ? `<img src="${img}" alt="${title} 실행 화면" />`
       : "Screenshot 16:10";
@@ -112,7 +116,10 @@ function renderProjects(data) {
 
     html += `
       <article class="cell project">
-        <div class="project__thumb">${thumb}</div>
+        <figure class="project__media">
+          <div class="project__thumb">${thumb}</div>
+          ${imgNote ? `<figcaption class="project__caption">※ ${imgNote}</figcaption>` : ""}
+        </figure>
         <div class="project__body">
           <h3 class="project__title">${heading}</h3>
           <p class="project__meta label">${meta}</p>
@@ -276,7 +283,9 @@ function initSplash(onDone) {
 
     splash.classList.add("is-hidden");
     root.classList.remove("is-splash");
-    splash.addEventListener("transitionend", () => splash.remove(), { once: true });
+    splash.addEventListener("transitionend", () => splash.remove(), {
+      once: true,
+    });
     onDone();
   }
 
@@ -335,7 +344,9 @@ async function runTerminal() {
 
   // 움직임 줄이기 설정이면 타이핑 없이 결과만 한 번에 표시
   if (window.matchMedia("(prefers-reduced-motion: reduce)").matches) {
-    const all = terminalScript.map(({ cmd, out }) => `${PROMPT}${cmd}\n${out}`).join("\n");
+    const all = terminalScript
+      .map(({ cmd, out }) => `${PROMPT}${cmd}\n${out}`)
+      .join("\n");
     showTerminal(`${all}\n${PROMPT}`);
     return;
   }
