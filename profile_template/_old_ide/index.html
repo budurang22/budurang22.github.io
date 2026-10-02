@@ -1,0 +1,242 @@
+<!doctype html>
+<html lang="ko">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>OOO Portfolio</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    <link
+      rel="stylesheet"
+      href="https://fonts.googleapis.com/css2?family=IBM+Plex+Sans+KR:wght@400;500;700&family=JetBrains+Mono:wght@400;600;700&family=Nanum+Gothic+Coding:wght@400;700&display=swap"
+    />
+    <link rel="stylesheet" href="css/style.css" />
+    <script src="js/main.js" defer></script>
+  </head>
+  <body>
+    <div class="ide">
+      <!-- 1. 상단 타이틀바 -->
+      <header class="titlebar">
+        <!-- TODO: 작은 프로필 사진으로 교체 → <img src="images/profile.jpg" alt="OOO 프로필" /> -->
+        <div class="avatar slot">사진</div>
+        <span class="titlebar__name mono">ooo-portfolio</span>
+        <span class="titlebar__branch mono">⎇ main</span>
+        <span class="titlebar__spacer"></span>
+        <button type="button" class="run mono" data-open="contact">
+          <span class="run__icon">▶</span> Run Contact
+        </button>
+        <button type="button" class="theme-toggle" id="themeToggle" aria-label="다크 모드 전환">
+          🌙
+        </button>
+      </header>
+
+      <div class="workspace">
+        <!-- 2. 좌측 메뉴 -->
+        <aside class="menu" aria-label="포트폴리오 메뉴">
+          <nav class="menu__nav">
+            <p class="menu__label">Profile</p>
+            <ul class="menu__list">
+              <li>
+                <button type="button" class="menu__item" data-open="about">
+                  <span class="icon icon--class">C</span>
+                  <span class="menu__title">소개</span>
+                  <span class="menu__file mono">AboutMe.java</span>
+                </button>
+              </li>
+              <li>
+                <button type="button" class="menu__item" data-open="skills">
+                  <span class="icon icon--gradle">G</span>
+                  <span class="menu__title">기술 스택</span>
+                  <span class="menu__file mono">build.gradle</span>
+                </button>
+              </li>
+              <li>
+                <button type="button" class="menu__item" data-open="history">
+                  <span class="icon icon--log">L</span>
+                  <span class="menu__title">이력</span>
+                  <span class="menu__file mono">history.log</span>
+                </button>
+              </li>
+            </ul>
+
+            <p class="menu__label">Projects</p>
+            <!-- js/main.js의 projects 배열로 렌더링 -->
+            <ul class="menu__list" id="projectMenu"></ul>
+
+            <p class="menu__label">Contact</p>
+            <ul class="menu__list">
+              <li>
+                <button type="button" class="menu__item" data-open="contact">
+                  <span class="icon icon--mail">M</span>
+                  <span class="menu__title">연락하기</span>
+                  <span class="menu__file mono">Contact.java</span>
+                </button>
+              </li>
+            </ul>
+          </nav>
+        </aside>
+
+        <!-- 3. 에디터 영역 -->
+        <main class="editor">
+          <div class="tabs mono" role="tablist" id="tabs"></div>
+
+          <div class="editor__scroll" id="editorScroll">
+            <!-- 3-1. 소개 -->
+            <section class="file" id="about" data-name="AboutMe.java" data-path="src › profile › AboutMe">
+              <div class="code">
+                <div class="l"><span class="cm">// 자바 2개월 차, 매일 커밋하며 성장 중</span></div>
+                <div class="l"><span class="kw">package</span> dev.ooo.profile;</div>
+                <div class="l"></div>
+                <div class="l"><span class="an">@Developer</span>(role = <span class="st">"Backend"</span>)</div>
+                <div class="l"><span class="kw">public class</span> AboutMe {</div>
+                <div class="l"></div>
+                <div class="l">    <span class="kw">private final</span> String <span class="fd">name</span> = <span class="st">"OOO"</span>;</div>
+                <div class="l">    <span class="kw">private final</span> String <span class="fd">goal</span> = <span class="st">"읽기 쉬운 코드를 쓰는 백엔드 개발자"</span>;</div>
+                <div class="l">    <span class="kw">private int</span> <span class="fd">projects</span> = <span class="nu">4</span>;</div>
+                <div class="l"></div>
+                <div class="l">    <span class="cm">/**</span></div>
+                <div class="l"><span class="cm">     * 새로운 것을 배울 때 "왜 그렇게 동작하는지"를</span></div>
+                <div class="l"><span class="cm">     * 끝까지 확인하는 것을 좋아합니다.</span></div>
+                <div class="l"><span class="cm">     */</span></div>
+                <div class="l">    <span class="kw">public</span> String <span class="fn">motto</span>() {</div>
+                <div class="l">        <span class="kw">return</span> <span class="st">"에러 메시지는 끝까지 읽는다"</span>;</div>
+                <div class="l">    }</div>
+                <div class="l">}</div>
+              </div>
+
+              <aside class="preview">
+                <p class="preview__label">Preview · profile.jpg</p>
+                <!-- TODO: 프로필 사진으로 교체 → <img src="images/profile.jpg" alt="OOO 프로필" /> -->
+                <div class="slot slot--photo"><p><b>프로필 사진</b>정사각형 · 400×400 권장</p></div>
+                <dl class="info">
+                  <dt>이름</dt>
+                  <dd>OOO</dd>
+                  <dt>지향</dt>
+                  <dd>Backend · Java</dd>
+                  <dt>과정</dt>
+                  <dd>교육 과정명</dd>
+                  <dt>GitHub</dt>
+                  <dd class="mono">budurang22</dd>
+                </dl>
+              </aside>
+            </section>
+
+            <!-- 3-2. 기술 스택 -->
+            <section class="file" id="skills" data-name="build.gradle" data-path="build.gradle" hidden>
+              <div class="code">
+                <div class="l"><span class="cm">// 지금 쓸 수 있는 기술 = 의존성 목록</span></div>
+                <div class="l"><span class="fn">dependencies</span> {</div>
+                <div class="l">    <span class="cm">// Language</span></div>
+                <div class="l">    <span class="fn">implementation</span> <span class="st">'lang:java:17'</span></div>
+                <div class="l">    <span class="fn">implementation</span> <span class="st">'lang:javascript:es6'</span></div>
+                <div class="l">    <span class="fn">implementation</span> <span class="st">'lang:sql'</span></div>
+                <div class="l"></div>
+                <div class="l">    <span class="cm">// Backend</span></div>
+                <div class="l">    <span class="fn">implementation</span> <span class="st">'db:jdbc'</span></div>
+                <div class="l"></div>
+                <div class="l">    <span class="cm">// Frontend</span></div>
+                <div class="l">    <span class="fn">implementation</span> <span class="st">'web:html5'</span></div>
+                <div class="l">    <span class="fn">implementation</span> <span class="st">'web:css3'</span></div>
+                <div class="l">    <span class="fn">implementation</span> <span class="st">'web:bootstrap'</span></div>
+                <div class="l"></div>
+                <div class="l">    <span class="cm">// Tools</span></div>
+                <div class="l">    <span class="fn">tools</span> <span class="st">'git'</span>, <span class="st">'github'</span>, <span class="st">'intellij'</span>, <span class="st">'vscode'</span></div>
+                <div class="l">}</div>
+              </div>
+
+              <aside class="preview">
+                <p class="preview__label">Gradle · Dependencies</p>
+                <div class="skill-group">
+                  <h3>Language</h3>
+                  <ul class="chips"><li>Java</li><li>JavaScript</li><li>SQL</li></ul>
+                </div>
+                <div class="skill-group">
+                  <h3>Backend</h3>
+                  <ul class="chips"><li>JDBC</li></ul>
+                </div>
+                <div class="skill-group">
+                  <h3>Frontend</h3>
+                  <ul class="chips"><li>HTML5</li><li>CSS3</li><li>Bootstrap</li></ul>
+                </div>
+                <div class="skill-group">
+                  <h3>Tools</h3>
+                  <ul class="chips"><li>Git</li><li>GitHub</li><li>IntelliJ</li><li>VS Code</li></ul>
+                </div>
+              </aside>
+            </section>
+
+            <!-- 3-3. 이력 -->
+            <section class="file" id="history" data-name="history.log" data-path="history.log" hidden>
+              <div class="code">
+                <div class="l"><span class="nu">0000-00</span>  <span class="kw">[START]</span>  교육 과정명 수강 시작</div>
+                <div class="l">          └ Java, JDBC, HTML/CSS/JavaScript</div>
+                <div class="l"></div>
+                <div class="l"><span class="nu">0000-00</span>  <span class="kw">[INFO]</span>   이전 경력 또는 학력</div>
+                <div class="l">          └ 한 줄 설명</div>
+                <div class="l"></div>
+                <div class="l"><span class="nu">2026-10</span>  <span class="st">[DEPLOY]</span> 포트폴리오 사이트 공개</div>
+              </div>
+
+              <aside class="preview">
+                <p class="preview__label">Preview · 증명사진 / 수료증</p>
+                <!-- TODO: 증명사진 또는 수료증 이미지로 교체 -->
+                <div class="slot slot--photo"><p><b>사진 또는 수료증</b>세로형도 가능</p></div>
+              </aside>
+            </section>
+
+            <!-- 3-4. 프로젝트 (js/main.js의 projects 배열로 렌더링) -->
+            <div id="projectFiles"></div>
+
+            <!-- 3-5. 연락하기 -->
+            <section class="file" id="contact" data-name="Contact.java" data-path="src › profile › Contact" hidden>
+              <div class="code">
+                <div class="l"><span class="kw">public class</span> Contact {</div>
+                <div class="l">    <span class="kw">public static void</span> <span class="fn">main</span>(String[] args) {</div>
+                <div class="l">        System.<span class="fd">out</span>.<span class="fn">println</span>(<span class="st">"함께 이야기 나눠요"</span>);</div>
+                <div class="l">        System.<span class="fd">out</span>.<span class="fn">println</span>(<span class="st">"email  : your@email.com"</span>);</div>
+                <div class="l">        System.<span class="fd">out</span>.<span class="fn">println</span>(<span class="st">"github : github.com/budurang22"</span>);</div>
+                <div class="l">    }</div>
+                <div class="l">}</div>
+              </div>
+
+              <aside class="preview">
+                <p class="preview__label">Preview · 명함</p>
+                <div class="card">
+                  <!-- TODO: 프로필 사진으로 교체 -->
+                  <div class="slot slot--photo card__photo"><p>사진</p></div>
+                  <div>
+                    <strong class="card__name">OOO</strong>
+                    <span class="card__role">Backend Developer</span>
+                  </div>
+                </div>
+                <dl class="info">
+                  <dt>Email</dt>
+                  <dd class="mono" id="mail">your@email.com</dd>
+                  <dt>GitHub</dt>
+                  <dd class="mono">budurang22</dd>
+                </dl>
+                <button type="button" class="btn btn--ghost" id="copyMail">이메일 복사</button>
+                <a href="https://github.com/budurang22" class="btn btn--primary" target="_blank" rel="noopener">GitHub 열기 ↗</a>
+              </aside>
+            </section>
+          </div>
+        </main>
+      </div>
+
+      <!-- 4. 하단 터미널 + 상태바 -->
+      <footer>
+        <div class="terminal">
+          <div class="terminal__head"><b>Terminal</b><span>Run</span><span>Git</span></div>
+          <pre class="terminal__body" id="terminal"></pre>
+        </div>
+        <div class="statusbar mono">
+          <span class="statusbar__path" id="statusPath"></span>
+          <span>UTF-8</span>
+          <span>LF</span>
+          <span>Java 17</span>
+          <span>⎇ main</span>
+        </div>
+      </footer>
+    </div>
+  </body>
+</html>

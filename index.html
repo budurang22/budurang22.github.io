@@ -1,338 +1,371 @@
 <!doctype html>
+<html lang="ko">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>서인석 | Backend · DevOps Developer</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    <link
+      rel="stylesheet"
+      href="https://fonts.googleapis.com/css2?family=Geist:wght@400;500;600;700&family=Geist+Mono:wght@400;500&display=swap"
+    />
+    <link
+      rel="stylesheet"
+      href="https://cdn.jsdelivr.net/gh/orioncactus/pretendard@v1.3.9/dist/web/variable/pretendardvariable.min.css"
+    />
+    <link rel="stylesheet" href="css/style.css" />
+    <script src="js/main.js" defer></script>
+  </head>
+  <body>
+    <!-- 1. 상단 메뉴 -->
+    <header class="header">
+      <div class="container header__inner">
+        <a href="#top" class="logo"
+          ><span class="logo__mark"></span>또비 포트폴리오</a
+        >
+        <nav class="nav">
+          <a href="#about">About</a>
+          <a href="#experience">Experience</a>
+          <a href="#work">Work</a>
+          <a href="#stack">Stack</a>
+          <a href="#education">Education</a>
+        </nav>
+        <a href="#contact" class="btn btn--line btn--sm">연락하기</a>
+      </div>
+    </header>
 
-<html>
-  <title>W3.CSS CV Template</title>
-  <meta name="viewport" content="width=device-width, initial-scale=1" />
-  <link rel="stylesheet" href="https://www.w3schools.com/w3css/5/w3.css" />
-  <link
-    rel="stylesheet"
-    href="https://fonts.googleapis.com/css?family=Roboto"
-  />
-  <link
-    rel="stylesheet"
-    href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css"
-  />
+    <main id="top" class="container">
+      <!-- 2. 메인 소개 -->
+      <section class="hero">
+        <p class="badge">
+          <span class="badge__dot"></span>웹 개발 경력 2년 10개월 ·
+          백엔드/DevOps로 확장 중
+        </p>
+        <h1 class="hero__title">
+          현장의 문제를 이해하고,<br />
+          <span class="hero__title-sub">기술로 해결하는 개발자입니다.</span>
+        </h1>
+        <p class="hero__desc">
+          Vue 3 관리자 시스템을 개발·운영하며 장비 점검 시간을 30분에서 10분으로
+          줄였습니다. 지금은 Java, Spring Boot, Docker, AWS로 서비스의 개발부터
+          운영까지 다루는 개발자를 목표로 하고 있습니다.
+        </p>
+        <div class="hero__actions">
+          <a href="#work" class="btn btn--solid">프로젝트 보기</a>
+          <a
+            href="https://github.com/budurang22"
+            class="btn btn--line"
+            target="_blank"
+            rel="noopener"
+            >GitHub ↗</a
+          >
+        </div>
+      </section>
 
-  <style>
-    html,
-    body,
-    h1,
-    h2,
-    h3,
-    h4,
-    h5,
-    h6 {
-      font-family: "Roboto", sans-serif;
-    }
-
-    .cv-grid {
-      display: grid;
-      grid-template-columns: 1fr;
-      gap: 16px;
-    }
-
-    @media (min-width: 601px) {
-      .cv-grid {
-        grid-template-columns: 1fr 2fr;
-      }
-    }
-  </style>
-
-  <body class="w3-light-grey">
-    <!-- Page Container -->
-
-    <main class="w3-content w3-margin-top" style="max-width: 1400px">
-      <!-- Grid -->
-
-      <div class="cv-grid w3-padding">
-        <!-- Left Column -->
-
-        <div>
-          <div class="w3-white w3-text-grey w3-card-4">
-            <div class="w3-display-container">
-              <img
-                src="/w3images/avatar_hat.jpg"
-                style="width: 100%"
-                alt="Jane Doe"
-              />
-
-              <div class="w3-display-bottomleft w3-container w3-text-black">
-                <h2>Jane Doe</h2>
-              </div>
-            </div>
-
-            <div class="w3-container">
-              <p>
-                <i
-                  class="fa fa-briefcase fa-fw w3-margin-right w3-large w3-text-teal"
-                ></i>
-                Designer
-              </p>
-
-              <p>
-                <i
-                  class="fa fa-home fa-fw w3-margin-right w3-large w3-text-teal"
-                ></i>
-                London, UK
-              </p>
-
-              <p>
-                <i
-                  class="fa fa-envelope fa-fw w3-margin-right w3-large w3-text-teal"
-                ></i>
-                ex@mail.com
-              </p>
-
-              <p>
-                <i
-                  class="fa fa-phone fa-fw w3-margin-right w3-large w3-text-teal"
-                ></i>
-                1224435534
-              </p>
-
-              <hr />
-
-              <p class="w3-large">
-                <b>
-                  <i
-                    class="fa fa-asterisk fa-fw w3-margin-right w3-text-teal"
-                  ></i>
-                  Skills
-                </b>
-              </p>
-
-              <p>Adobe Photoshop</p>
-
-              <div class="w3-light-grey w3-round-xlarge w3-small">
-                <div
-                  class="w3-container w3-center w3-round-xlarge w3-teal"
-                  style="width: 90%"
-                >
-                  90%
-                </div>
-              </div>
-
-              <p>Photography</p>
-
-              <div class="w3-light-grey w3-round-xlarge w3-small">
-                <div
-                  class="w3-container w3-center w3-round-xlarge w3-teal"
-                  style="width: 80%"
-                >
-                  80%
-                </div>
-              </div>
-
-              <p>Illustrator</p>
-
-              <div class="w3-light-grey w3-round-xlarge w3-small">
-                <div
-                  class="w3-container w3-center w3-round-xlarge w3-teal"
-                  style="width: 75%"
-                >
-                  75%
-                </div>
-              </div>
-
-              <p>Media</p>
-
-              <div class="w3-light-grey w3-round-xlarge w3-small">
-                <div
-                  class="w3-container w3-center w3-round-xlarge w3-teal"
-                  style="width: 50%"
-                >
-                  50%
-                </div>
-              </div>
-
-              <br />
-
-              <p class="w3-large">
-                <b>
-                  <i class="fa fa-globe fa-fw w3-margin-right w3-text-teal"></i>
-                  Languages
-                </b>
-              </p>
-
-              <p>English</p>
-
-              <div class="w3-light-grey w3-round-xlarge">
-                <div
-                  class="w3-round-xlarge w3-teal"
-                  style="height: 24px; width: 100%"
-                ></div>
-              </div>
-
-              <p>Spanish</p>
-
-              <div class="w3-light-grey w3-round-xlarge">
-                <div
-                  class="w3-round-xlarge w3-teal"
-                  style="height: 24px; width: 55%"
-                ></div>
-              </div>
-
-              <p>German</p>
-
-              <div class="w3-light-grey w3-round-xlarge">
-                <div
-                  class="w3-round-xlarge w3-teal"
-                  style="height: 24px; width: 25%"
-                ></div>
-              </div>
-
-              <br />
-            </div>
+      <!-- 3. 벤토 그리드 (자기소개) -->
+      <section class="bento" id="about">
+        <div class="cell cell--photo">
+          <div class="photo-slot">
+            <img src="img/IMG_1518.JPG" alt="서인석 프로필 사진" />
           </div>
         </div>
 
-        <!-- Right Column -->
-
-        <div>
-          <!-- Work Experience -->
-
-          <section class="w3-container w3-card w3-white w3-margin-bottom">
-            <h2 class="w3-text-grey w3-padding-16">
-              <i
-                class="fa fa-suitcase fa-fw w3-margin-right w3-xxlarge w3-text-teal"
-              ></i>
-              Work Experience
-            </h2>
-
-            <div class="w3-container">
-              <h5 class="w3-opacity">
-                <b>Front End Developer / w3schools.com</b>
-              </h5>
-
-              <h6 class="w3-text-teal">
-                <i class="fa fa-calendar fa-fw w3-margin-right"></i>
-                Jan 2015 -
-                <span class="w3-tag w3-teal w3-round">Current</span>
-              </h6>
-
-              <p>
-                Lorem ipsum dolor sit amet. Praesentium magnam consectetur vel
-                in deserunt aspernatur est reprehenderit sunt hic. Nulla tempora
-                soluta ea et odio, unde doloremque repellendus iure, iste.
-              </p>
-
-              <hr />
-            </div>
-
-            <div class="w3-container">
-              <h5 class="w3-opacity">
-                <b>Web Developer / something.com</b>
-              </h5>
-
-              <h6 class="w3-text-teal">
-                <i class="fa fa-calendar fa-fw w3-margin-right"></i>
-                Mar 2012 - Dec 2014
-              </h6>
-
-              <p>
-                Consectetur adipisicing elit. Praesentium magnam consectetur vel
-                in deserunt aspernatur est reprehenderit sunt hic. Nulla tempora
-                soluta ea et odio, unde doloremque repellendus iure, iste.
-              </p>
-
-              <hr />
-            </div>
-
-            <div class="w3-container">
-              <h5 class="w3-opacity">
-                <b>Graphic Designer / designsomething.com</b>
-              </h5>
-
-              <h6 class="w3-text-teal">
-                <i class="fa fa-calendar fa-fw w3-margin-right"></i>
-                Jun 2010 - Mar 2012
-              </h6>
-
-              <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit.</p>
-
-              <br />
-            </div>
-          </section>
-
-          <!-- Education -->
-
-          <section class="w3-container w3-card w3-white">
-            <h2 class="w3-text-grey w3-padding-16">
-              <i
-                class="fa fa-certificate fa-fw w3-margin-right w3-xxlarge w3-text-teal"
-              ></i>
-              Education
-            </h2>
-
-            <div class="w3-container">
-              <h5 class="w3-opacity">
-                <b>W3Schools.com</b>
-              </h5>
-
-              <h6 class="w3-text-teal">
-                <i class="fa fa-calendar fa-fw w3-margin-right"></i>
-                Forever
-              </h6>
-
-              <p>Web Development! All I need to know in one place</p>
-
-              <hr />
-            </div>
-
-            <div class="w3-container">
-              <h5 class="w3-opacity">
-                <b>London Business School</b>
-              </h5>
-
-              <h6 class="w3-text-teal">
-                <i class="fa fa-calendar fa-fw w3-margin-right"></i>
-                2013 - 2015
-              </h6>
-
-              <p>Master Degree</p>
-
-              <hr />
-            </div>
-
-            <div class="w3-container">
-              <h5 class="w3-opacity">
-                <b>School of Coding</b>
-              </h5>
-
-              <h6 class="w3-text-teal">
-                <i class="fa fa-calendar fa-fw w3-margin-right"></i>
-                2010 - 2013
-              </h6>
-
-              <p>Bachelor Degree</p>
-
-              <br />
-            </div>
-          </section>
+        <div class="cell cell--about">
+          <span class="label">ABOUT</span>
+          <p>
+            재난·방재 장비를 현장에서 직접 점검하며 운영자의 불편을 보았고,
+            <br />그것을 <em class="gradient-text">웹 시스템 개선</em>으로
+            연결해 왔습니다.
+          </p>
+          <p class="cell__note">
+            AI 코딩 도구(Claude Code, Cursor)는 <br />
+            생성된 코드를 직접 검토하고 검증하는 방식으로 활용합니다.
+          </p>
         </div>
 
-        <!-- End Grid -->
-      </div>
+        <div class="cell cell--stat">
+          <span class="label">IMPACT</span>
+          <div>
+            <strong class="stat__num">-67%</strong>
+            <span class="stat__desc">장비 점검 시간<br />30분 → 10분</span>
+          </div>
+        </div>
+
+        <div class="cell cell--stat">
+          <span class="label">EXPERIENCE</span>
+          <div>
+            <strong class="stat__num">2y 10m</strong>
+            <span class="stat__desc">웹 개발 · 시스템 운영</span>
+          </div>
+        </div>
+
+        <div class="cell cell--stat">
+          <span class="label">NOW</span>
+          <div>
+            <strong class="stat__now">DevOps 과정</strong>
+            <span class="stat__desc"
+              >한국소프트웨어교육원<br />2026.07 — 2026.12</span
+            >
+          </div>
+        </div>
+
+        <!-- 사진 아래 프로필 정보 카드 -->
+        <div class="cell cell--info">
+          <span class="label">PROFILE</span>
+          <dl class="profile-info">
+            <dt>이름</dt>
+            <dd>서인석</dd>
+            <dt>생년</dt>
+            <dd>1992 (34세)</dd>
+            <dt>거주</dt>
+            <dd>경기 성남시</dd>
+            <dt>희망</dt>
+            <dd>Backend · DevOps</dd>
+          </dl>
+        </div>
+
+        <div class="cell cell--wide">
+          <span class="label">ACHIEVEMENTS</span>
+          <ul class="checklist">
+            <li>입사 1년 6개월 만에 사원 → 대리 승진</li>
+            <li>연간 우수사원 및 분기 칭찬사원 선정</li>
+            <li>현장 운영자의 불편사항을 웹 시스템 개선으로 연결</li>
+          </ul>
+        </div>
+      </section>
+
+      <!-- 4. 경력 -->
+      <section class="section" id="experience">
+        <div class="section__head">
+          <h2 class="section__title">Experience</h2>
+          <span class="label">총 2년 10개월</span>
+        </div>
+
+        <article class="cell exp">
+          <div class="exp__head">
+            <div>
+              <h3 class="exp__company">㈜우보재난시스템</h3>
+              <p class="exp__role">
+                시스템사업부 · 대리 · 웹 개발 · 네트워크 장애대응 · 기술지원
+              </p>
+            </div>
+            <span class="label">2023.10 — 2026.07</span>
+          </div>
+
+          <div class="exp__groups">
+            <div>
+              <h4 class="label">WEB</h4>
+              <ul>
+                <li>
+                  Vue 3 compositionAPI 기반 관리자 웹 시스템 기능 개선 및
+                  유지보수
+                </li>
+                <li>장비 상태 모니터링 및 점검 이력 관리 기능 개선</li>
+                <li>JWT 인증, 카카오맵 API 기반 장비 위치 기능 구현</li>
+                <li>
+                  운영자 업무 흐름 개선으로 장비 점검 시간 약 30분 -> 10분 (67%
+                  단축)
+                </li>
+              </ul>
+            </div>
+            <div>
+              <h4 class="label">BACKEND / DATA</h4>
+              <ul>
+                <li>Node.js 기반 REST API 기능 구현 및 수정</li>
+                <li>MySQL 기반 장비·수위 데이터 조회 및 가공</li>
+                <li>프론트엔드와 API 연동 및 데이터 처리</li>
+              </ul>
+            </div>
+            <div>
+              <h4 class="label">SERVER / NETWORK</h4>
+              <ul>
+                <li>데이터 수집 및 중계 서버 환경 구성</li>
+                <li>Windows 서버 설치 및 운영 지원</li>
+                <li>LTE Router, VPN, 방화벽 기반 통신 환경 구성·점검</li>
+              </ul>
+            </div>
+            <div>
+              <h4 class="label">FIELD</h4>
+              <ul>
+                <li>관공서 재난 장비 A/S 및 유지보수</li>
+                <li>기상관측 시스템 및 센서 장비 유지보수</li>
+                <li>장비 점검 및 A/S 리포트 관리</li>
+              </ul>
+            </div>
+          </div>
+        </article>
+      </section>
+
+      <!-- 5. 프로젝트 (js/main.js의 projects 배열로 렌더링) -->
+      <section class="section" id="work">
+        <div class="section__head">
+          <h2 class="section__title">Selected work</h2>
+          <span class="label">실무 · 팀 프로젝트</span>
+        </div>
+        <div class="projects" id="projectList"></div>
+
+        <div class="section__head section__head--sub">
+          <h3 class="section__subtitle">수업 실습</h3>
+          <span class="label">한국소프트웨어교육원 · 2026</span>
+        </div>
+        <div class="practice" id="practiceList"></div>
+      </section>
+
+      <!-- 6. 기술 스택 -->
+      <section class="section" id="stack">
+        <div class="section__head">
+          <h2 class="section__title">Stack</h2>
+          <span class="label">실무에서 쓴 기술 / 지금 배우는 기술</span>
+        </div>
+        <div class="stack">
+          <div class="cell">
+            <span class="label">FRONTEND</span>
+            <ul class="tags">
+              <li>Vue 3</li>
+              <li>React</li>
+              <li>JavaScript (ES6)</li>
+              <li>Sass</li>
+              <li>HTML · CSS</li>
+            </ul>
+          </div>
+          <div class="cell">
+            <span class="label">BACKEND</span>
+            <ul class="tags">
+              <li>Node.js</li>
+              <li>REST API</li>
+              <li>JWT</li>
+              <li>Java</li>
+            </ul>
+          </div>
+          <div class="cell">
+            <span class="label">DATABASE</span>
+            <ul class="tags">
+              <li>MySQL</li>
+              <li>MariaDB</li>
+            </ul>
+          </div>
+          <div class="cell">
+            <span class="label">INFRA / NETWORK</span>
+            <ul class="tags">
+              <li>Windows Server</li>
+              <li>VPN</li>
+              <li>LTE Router</li>
+              <li>방화벽 설정</li>
+            </ul>
+          </div>
+          <div class="cell">
+            <span class="label">TOOLS</span>
+            <ul class="tags">
+              <li>Git</li>
+              <li>Claude Code</li>
+              <li>Cursor</li>
+            </ul>
+          </div>
+          <div class="cell cell--learning">
+            <span class="label">LEARNING · 2026</span>
+            <ul class="tags">
+              <li>Spring Boot</li>
+              <li>JPA</li>
+              <li>Spring Security</li>
+              <li>Docker</li>
+              <li>CI/CD</li>
+              <li>AWS</li>
+            </ul>
+          </div>
+        </div>
+      </section>
+
+      <!-- 7. 교육 / 자격 -->
+      <section class="section" id="education">
+        <div class="section__head">
+          <h2 class="section__title">Education</h2>
+          <span class="label">교육 · 학력 · 자격</span>
+        </div>
+        <div class="edu">
+          <ol class="timeline">
+            <li>
+              <span class="label">2026.08 — 2028.12</span>
+              <div>
+                <strong>학점은행제 컴퓨터공학 학사</strong>
+                <p>학위 취득 과정 진행 중</p>
+              </div>
+            </li>
+            <li>
+              <span class="label">2026.07 — 2026.12</span>
+              <div>
+                <strong>한국소프트웨어교육원</strong>
+                <p>AI를 활용한 Java 기반 DevOps 개발자 양성 과정</p>
+                <p class="timeline__detail">
+                  Spring Boot · JPA · Spring Security · React · Docker · CI/CD ·
+                  AWS
+                </p>
+              </div>
+            </li>
+            <li>
+              <span class="label">2023.03 — 2023.07</span>
+              <div>
+                <strong>하이미디어IT인재개발원</strong>
+                <p>JAVA·AI/RPA/빅데이터를 활용한 E-커머스 개발자 양성 과정</p>
+                <p class="timeline__detail">
+                  Java · Spring · MyBatis · DB 설계 · SQL
+                </p>
+              </div>
+            </li>
+            <li>
+              <span class="label">2021.03 — 2021.08</span>
+              <div>
+                <strong>SBS아카데미컴퓨터아트학원</strong>
+                <p>웹디자인 정규과정</p>
+                <p class="timeline__detail">
+                  HTML · CSS · JavaScript · Photoshop · Illustrator
+                </p>
+              </div>
+            </li>
+          </ol>
+
+          <div class="cell certs">
+            <span class="label">CERTIFICATES</span>
+            <ul>
+              <li>
+                <strong>정보처리산업기사</strong><span>2026.03 · 필기합격</span>
+              </li>
+              <li>
+                <strong>전자기능사</strong><span>2009.07 · 최종합격</span>
+              </li>
+            </ul>
+          </div>
+        </div>
+      </section>
+
+      <!-- 8. 연락처 -->
+      <section class="contact" id="contact">
+        <div>
+          <h2 class="contact__title">현장을 이해하는 개발자가 필요하다면.</h2>
+          <!-- TODO: 실제 이메일 주소로 교체 -->
+          <p class="contact__mail mono" id="mail">budurang222@email.com</p>
+        </div>
+        <div class="contact__actions">
+          <button type="button" class="btn btn--solid" id="copyMail">
+            이메일 복사
+          </button>
+          <a
+            href="https://github.com/budurang22"
+            class="btn btn--line"
+            target="_blank"
+            rel="noopener"
+            >GitHub ↗</a
+          >
+        </div>
+      </section>
     </main>
 
-    <!-- Footer -->
-
-    <footer class="w3-container w3-teal w3-center w3-margin-top">
-      <p>Find me on social media.</p>
-
-      <i class="fa fa-facebook-official w3-hover-opacity"></i>
-      <i class="fa fa-instagram w3-hover-opacity"></i>
-      <i class="fa fa-snapchat w3-hover-opacity"></i>
-      <i class="fa fa-pinterest-p w3-hover-opacity"></i>
-      <i class="fa fa-twitter w3-hover-opacity"></i>
-      <i class="fa fa-linkedin w3-hover-opacity"></i>
-
-      <p>
-        Powered by
-        <a href="https://www.w3schools.com/w3css/default.asp" target="_blank">
-          w3.css
-        </a>
-      </p>
+    <!-- 9. Footer -->
+    <footer class="footer">
+      <div class="container footer__inner">
+        <p>© 2026 서인석. Built with HTML · CSS · JavaScript</p>
+        <a href="#top">맨 위로 ↑</a>
+      </div>
     </footer>
   </body>
 </html>
