@@ -192,9 +192,22 @@ button {
 }
 
 /* ===== 2. 메인 소개 ===== */
+/* 첫 화면을 브라우저 높이만큼 채워서 아래 About이 걸쳐 보이지 않게 함
+   100svh: 모바일 주소창을 뺀 실제 보이는 높이 / 64px: 상단 메뉴 높이 */
 .hero {
-  max-width: 760px;
-  padding: 96px 0 64px;
+  min-height: calc(100svh - 64px);
+  display: grid;
+  grid-template-columns: 1.1fr 1fr;
+  align-items: center;
+  gap: 48px;
+  padding: 48px 0;
+}
+
+/* 왼쪽 글 영역 */
+.hero__text {
+  display: flex;
+  flex-direction: column;
+  align-items: flex-start;
 }
 
 .badge {
@@ -219,7 +232,7 @@ button {
 
 .hero__title {
   margin-top: 22px;
-  font-size: clamp(36px, 5.6vw, 64px);
+  font-size: clamp(32px, 4.4vw, 52px);
   font-weight: 600;
   line-height: 1.12;
   letter-spacing: -0.04em;
@@ -243,6 +256,142 @@ button {
   flex-wrap: wrap;
   gap: 10px;
   margin-top: 30px;
+}
+
+/* ===== iTerm2 스타일 터미널 ===== */
+.iterm {
+  --term-bg: rgba(28, 28, 30, 0.94);
+  --term-text: #e5e5e7;
+
+  overflow: hidden;
+  border: 1px solid rgba(0, 0, 0, 0.5);
+  border-radius: 12px;
+  background-color: var(--term-bg);
+  backdrop-filter: blur(20px);
+  box-shadow:
+    0 0 0 0.5px rgba(255, 255, 255, 0.1) inset,
+    0 30px 60px -20px rgba(24, 24, 27, 0.45),
+    0 12px 24px -12px rgba(24, 24, 27, 0.3);
+  font-family: Menlo, Monaco, "Geist Mono", "Pretendard Variable", monospace;
+}
+
+/* 맨 위 제목 줄: 신호등 버튼 + 가운데 제목 */
+.iterm__titlebar {
+  position: relative;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  height: 30px;
+  background: linear-gradient(#3a3a3c, #2d2d2f);
+  border-bottom: 1px solid #1c1c1e;
+}
+
+.iterm__lights {
+  position: absolute;
+  left: 12px;
+  display: flex;
+  gap: 8px;
+}
+
+.iterm__lights i {
+  width: 12px;
+  height: 12px;
+  border-radius: 50%;
+  background-color: #ff5f57;
+  box-shadow: inset 0 0 0 0.5px rgba(0, 0, 0, 0.25);
+}
+
+.iterm__lights i:nth-child(2) {
+  background-color: #febc2e;
+}
+
+.iterm__lights i:nth-child(3) {
+  background-color: #28c840;
+}
+
+.iterm__title {
+  font-family: "Geist", "Pretendard Variable", sans-serif;
+  font-size: 12.5px;
+  font-weight: 500;
+  color: #a1a1a6;
+}
+
+/* 탭 바 */
+.iterm__tabs {
+  display: flex;
+  background-color: #252527;
+  border-bottom: 1px solid #1c1c1e;
+}
+
+.iterm__tab {
+  flex: 1;
+  padding: 5px 0;
+  text-align: center;
+  font-family: "Geist", "Pretendard Variable", sans-serif;
+  font-size: 12px;
+  color: #8e8e93;
+}
+
+.iterm__tab + .iterm__tab {
+  border-left: 1px solid #1c1c1e;
+}
+
+.iterm__tab.is-active {
+  background-color: var(--term-bg);
+  color: #e5e5e7;
+}
+
+/* 본문: 높이 고정 → 글이 늘어나도 창이 밑으로 커지지 않음 (넘치면 안에서 스크롤) */
+.iterm__body {
+  height: 340px;
+  margin: 0;
+  padding: 14px 16px;
+  overflow-y: auto;
+  scrollbar-width: none;
+  white-space: pre-wrap;
+  word-break: break-all;
+  font: inherit;
+  font-size: 13.5px;
+  line-height: 1.75;
+  color: var(--term-text);
+}
+
+/* oh-my-zsh 기본 테마(robbyrussell) 색상 */
+.t-arrow {
+  color: #5ff967;
+  font-weight: 700;
+}
+
+.t-dir {
+  color: #6ae3fa;
+  font-weight: 700;
+}
+
+.t-key {
+  color: #8e8e93;
+}
+
+.t-ok {
+  color: #5ff967;
+}
+
+.t-hl {
+  color: #c4a7ff;
+}
+
+.t-caret {
+  display: inline-block;
+  width: 8px;
+  height: 1.15em;
+  vertical-align: -3px;
+  background-color: #e5e5e7;
+  animation: caret-blink 1s steps(1) infinite;
+}
+
+@keyframes caret-blink {
+  50% {
+    opacity: 0;
+  }
 }
 
 /* ===== 공통 카드 (마우스를 따라오는 빛 효과) ===== */
@@ -282,13 +431,20 @@ button {
 /* ===== 3. 벤토 그리드 ===== */
 .bento {
   display: grid;
-  grid-template-columns: repeat(4, 1fr);
-  grid-auto-rows: minmax(160px, auto);
-  gap: 12px;
+  grid-template-columns: 0.8fr repeat(3, 1fr);
+  grid-auto-rows: minmax(120px, auto);
+  gap: 10px;
+}
+
+.bento .cell {
+  gap: 8px;
+  padding: 16px 18px;
+  border-radius: 14px;
 }
 
 /* 카드는 비율 없이 칸 폭 그대로, 높이만 옆 카드들에 맞춰 늘어남 */
-.cell--photo {
+/* NOTE: 위 .bento .cell(우선순위 더 높음)의 padding을 이기려고 .bento를 붙임 */
+.bento .cell--photo {
   grid-row: span 2;
   padding: 0;
 }
@@ -318,14 +474,14 @@ button {
 }
 
 .cell--about p {
-  font-size: 19px;
+  font-size: 16.5px;
   line-height: 1.6;
   letter-spacing: -0.01em;
 }
 
 .stat__num {
   display: block;
-  font-size: 52px;
+  font-size: 40px;
   font-weight: 600;
   line-height: 1;
   letter-spacing: -0.04em;
@@ -340,7 +496,7 @@ button {
 .stat__now {
   display: block;
   margin-bottom: 4px;
-  font-size: 26px;
+  font-size: 21px;
   font-weight: 600;
   line-height: 1.2;
   letter-spacing: -0.03em;
@@ -349,8 +505,8 @@ button {
 .profile-info {
   display: grid;
   grid-template-columns: auto 1fr;
-  gap: 6px 16px;
-  font-size: 15px;
+  gap: 4px 14px;
+  font-size: 14px;
 }
 
 .profile-info dt {
@@ -362,14 +518,14 @@ button {
 }
 
 .cell__note {
-  font-size: 15px;
+  font-size: 14px;
   color: var(--sub);
 }
 
 .checklist {
   display: grid;
-  gap: 6px;
-  font-size: 15.5px;
+  gap: 4px;
+  font-size: 14.5px;
 }
 
 .checklist li::before {
@@ -518,6 +674,16 @@ button {
   transition: transform 0.2s, color 0.2s;
 }
 
+.project__title a {
+  display: flex;
+  flex: 1;
+  justify-content: space-between;
+}
+
+.project__title a:hover {
+  color: var(--cyan);
+}
+
 .project:hover .project__arrow {
   transform: translate(3px, -3px);
   color: var(--text);
@@ -532,9 +698,48 @@ button {
   margin-top: 2px;
 }
 
-/* 링크가 없는 카드 (회사 업무 등) */
-.project--static .project__arrow {
-  display: none;
+/* 트러블슈팅: 접었다 펼치는 박스 */
+.trouble {
+  margin-top: 12px;
+  border: 1px solid var(--border);
+  border-radius: 8px;
+  background-color: var(--bg);
+  font-size: 14.5px;
+}
+
+.trouble summary {
+  padding: 8px 12px;
+  cursor: pointer;
+  font-family: "Geist Mono", monospace;
+  font-size: 13px;
+  color: var(--violet);
+}
+
+.trouble summary:hover {
+  background-color: var(--surface);
+}
+
+.trouble dl {
+  display: grid;
+  grid-template-columns: auto 1fr;
+  gap: 6px 14px;
+  padding: 10px 12px 12px;
+  border-top: 1px solid var(--border);
+}
+
+.trouble dt {
+  font-weight: 600;
+  color: var(--muted);
+}
+
+.trouble dd {
+  color: var(--sub);
+}
+
+/* 결과 줄만 강조 */
+.trouble dd:last-of-type {
+  font-weight: 600;
+  color: var(--text);
 }
 
 /* 수업 실습: 썸네일 없는 작은 카드 */
@@ -738,6 +943,20 @@ button {
   color: var(--text);
 }
 
+/* ===== 스크롤 등장 효과: nav 메뉴별 섹션 단위 (reveal 클래스는 main.js에서 붙임) ===== */
+.reveal {
+  opacity: 0;
+  transform: translateY(60px);
+  transition:
+    opacity 0.8s ease,
+    transform 0.8s cubic-bezier(0.2, 0.7, 0.2, 1);
+}
+
+.reveal.is-visible {
+  opacity: 1;
+  transform: none;
+}
+
 /* ===== 등장 애니메이션 ===== */
 @keyframes rise {
   from {
@@ -754,14 +973,161 @@ button {
   animation: rise 0.7s cubic-bezier(0.2, 0.7, 0.2, 1);
 }
 
+/* ===== 스플래시 ===== */
+/* 스플래시가 떠 있는 동안: 스크롤 막고, 첫 화면 애니메이션은 대기 (is-splash 클래스는 main.js에서 붙였다 뗌) */
+.is-splash body {
+  overflow: hidden;
+}
+
+.is-splash .hero {
+  animation: none;
+}
+
+.splash {
+  position: fixed;
+  inset: 0;
+  z-index: 100;
+  display: grid;
+  place-items: center;
+  background-color: var(--bg);
+  cursor: pointer;
+  transition:
+    opacity 0.6s ease,
+    visibility 0.6s;
+  /* NOTE: JS가 실패해도 3.5초 뒤 CSS만으로 사라지도록 하는 안전장치 */
+  animation: splash-out 0.6s ease 3.5s forwards;
+}
+
+.splash.is-hidden {
+  opacity: 0;
+  visibility: hidden;
+}
+
+/* 배경: 본문 상단과 같은 보라/청록 빛 */
+.splash::before {
+  content: "";
+  position: absolute;
+  inset: 0;
+  background:
+    radial-gradient(500px 300px at 35% 40%, rgba(124, 58, 237, 0.12), transparent 70%),
+    radial-gradient(420px 260px at 65% 60%, rgba(8, 145, 178, 0.1), transparent 70%);
+}
+
+.splash__inner {
+  position: relative;
+  display: grid;
+  justify-items: center;
+  gap: 10px;
+  text-align: center;
+}
+
+.splash__mark {
+  width: 36px;
+  height: 36px;
+  margin-bottom: 8px;
+  border-radius: 10px;
+  background: linear-gradient(135deg, var(--cyan), var(--violet));
+  animation: splash-pop 0.6s cubic-bezier(0.2, 0.7, 0.2, 1) both;
+}
+
+.splash__title {
+  font-size: clamp(32px, 6vw, 56px);
+  font-weight: 600;
+  letter-spacing: -0.04em;
+  line-height: 1.15;
+  animation: splash-in 0.8s cubic-bezier(0.2, 0.7, 0.2, 1) 0.2s both;
+}
+
+.splash__sub {
+  font-size: 13px;
+  animation: splash-in 0.8s cubic-bezier(0.2, 0.7, 0.2, 1) 0.5s both;
+}
+
+/* 3초 동안 채워지는 진행 막대 */
+.splash__bar {
+  width: 160px;
+  height: 2px;
+  margin-top: 18px;
+  border-radius: 2px;
+  background-color: var(--border);
+  overflow: hidden;
+}
+
+.splash__bar::after {
+  content: "";
+  display: block;
+  height: 100%;
+  background: linear-gradient(90deg, var(--cyan), var(--violet));
+  transform-origin: left;
+  animation: splash-fill 3s linear forwards;
+}
+
+.splash__skip {
+  position: absolute;
+  bottom: calc(32px + env(safe-area-inset-bottom, 0px));
+  font-size: 12px;
+}
+
+@keyframes splash-in {
+  from {
+    opacity: 0;
+    transform: translateY(14px);
+    filter: blur(6px);
+  }
+  to {
+    opacity: 1;
+    transform: none;
+    filter: none;
+  }
+}
+
+@keyframes splash-pop {
+  from {
+    opacity: 0;
+    transform: scale(0.6) rotate(-12deg);
+  }
+  to {
+    opacity: 1;
+    transform: none;
+  }
+}
+
+@keyframes splash-fill {
+  from {
+    transform: scaleX(0);
+  }
+  to {
+    transform: scaleX(1);
+  }
+}
+
+@keyframes splash-out {
+  to {
+    opacity: 0;
+    visibility: hidden;
+  }
+}
+
 /* ===== 반응형 ===== */
 @media (max-width: 860px) {
+  .hero {
+    grid-template-columns: 1fr;
+    gap: 36px;
+    min-height: 0;
+    padding: 64px 0;
+  }
+
+  .iterm__body {
+    height: 300px;
+    font-size: 12.5px;
+  }
+
   .bento,
   .stack {
     grid-template-columns: repeat(2, 1fr);
   }
 
-  .cell--photo {
+  .bento .cell--photo {
     grid-column: 1 / -1;
     grid-row: span 1;
     width: 100%;
