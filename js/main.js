@@ -51,6 +51,8 @@ const projects = [
       "MySQL",
       "JWT",
       "Toss Payments",
+      "railway",
+      "vercel",
     ],
     img: "img/paw-mart.png",
     // TODO: PDF 이메일 통일 후 "pawmart.pdf" 또는 GitHub 주소 넣기
@@ -58,6 +60,7 @@ const projects = [
     added: [
       "디자인 시안 4종을 비교해 최종안 선정",
       "AI 작업 원칙 수립 후 단계별 커밋으로 진행",
+      "railway: 백엔드배포, vercel: 프론트배포 작업 진행 경험",
     ],
     trouble: {
       problem: "AI가 작성한 통합 테스트에서 동시 주문 시 재고 오류 발견",
