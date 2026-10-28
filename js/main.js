@@ -91,8 +91,9 @@ const projects = [
       "Vite",
       "Tailwind CSS",
       "TanStack Query",
+      "Zustand",
       "Docker",
-      "AWS",
+      "AWS EC2",
       "GitHub Actions",
     ],
     img: "img/wandy.png",
@@ -100,7 +101,7 @@ const projects = [
     added: [
       "플래너(C 파트) 담당: 장소 추가·삭제, 시간·메모 편집",
       "네이버·구글 지도 연동",
-      "GitHub Actions로 배포 자동화",
+      "Docker + GitHub Actions CI/CD: main 머지 시 EC2 자동 배포",
     ],
     trouble: {
       headline: "지도 SDK 로드 성공 시 에러 화면 해결",
