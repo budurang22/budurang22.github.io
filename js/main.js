@@ -15,9 +15,14 @@ const projects = [
     added: ["JWT 인증 + 카카오맵 장비 위치", "점검 이력 관리 기능 개선"],
     // 트러블슈팅 (접었다 펼치는 박스로 표시됨, 없으면 null)
     trouble: {
+      headline: "점검 시간 67% 단축",
       problem: "현장 점검마다 노트북을 장비에 연결해야 했음",
+      cause:
+        "점검·테스트 기능이 PC용 웹 화면에만 있어, 현장에서는 노트북을 챙겨 장비에 직접 연결해야만 사용 가능",
       solution: "점검·테스트 화면을 모바일 WebView로 구현",
       result: "점검 시간 30분 → 10분 (약 67% 단축)",
+      learned:
+        "기능을 추가하기 전에 사용자가 실제로 일하는 환경을 먼저 보는 것이 가장 큰 개선으로 이어진다는 점",
     },
   },
   {
@@ -32,11 +37,16 @@ const projects = [
       "희귀도 확률 기반 물고기 생성 로직",
     ],
     trouble: {
+      headline: "원인이 드러나는 예외 처리",
       problem:
         '골드가 부족해도 낚시터 잠금 해제를 시도 → DB CHECK 제약 위반, "오류가 발생했습니다"만 출력',
+      cause:
+        "잔액 검증을 DB CHECK 제약에만 맡겼고, DAO에서 SQLException을 하나의 메시지로 뭉뚱그려 처리해 실제 원인이 사라짐",
       solution:
         "Service 레이어에서 보유 골드를 먼저 검증하고 명확한 예외 메시지 반환",
       result: "DB 오류에 기대지 않고 원인이 드러나는 메시지 제공",
+      learned:
+        "DB 제약은 데이터를 지키는 마지막 방어선이고, 비즈니스 규칙은 Service에서 먼저 검증해야 한다는 레이어별 역할",
     },
   },
   {
@@ -55,7 +65,6 @@ const projects = [
       "vercel",
     ],
     img: "img/paw-mart.png",
-    // TODO: PDF 이메일 통일 후 "pawmart.pdf" 또는 GitHub 주소 넣기
     link: "https://github.com/budurang22/paw-mart",
     added: [
       "디자인 시안 4종을 비교해 최종안 선정",
@@ -63,9 +72,46 @@ const projects = [
       "railway: 백엔드배포, vercel: 프론트배포 작업 진행 경험",
     ],
     trouble: {
+      headline: "동시 주문 재고 정합성 확보",
       problem: "AI가 작성한 통합 테스트에서 동시 주문 시 재고 오류 발견",
+      cause:
+        "두 주문이 같은 재고 값을 동시에 읽고 각자 차감해 저장 → 나중에 저장한 값이 앞의 차감을 덮어씀 (Lost Update)",
       solution: "AI에게 원인 분석을 요청 → Optimistic Lock(@Version) 적용",
       result: "통합 테스트로 동시 주문 시 재고 정합성 확인",
+      learned:
+        "AI가 제안한 해결책도 동작 원리를 이해하고 테스트로 검증한 뒤 적용해야 한다는 점, 동시성 문제는 통합 테스트에서야 드러난다는 점",
+    },
+  },
+  {
+    title: "Wandy",
+    meta: "팀 프로젝트 · AI 페어 프로그래밍 · 2026.10 · 1주일",
+    desc: "한국·일본 여행 일정을 한 번에 계획하는 여행 플래너",
+    tags: [
+      "React",
+      "Vite",
+      "Tailwind CSS",
+      "TanStack Query",
+      "Docker",
+      "AWS",
+      "GitHub Actions",
+    ],
+    img: "img/wandy.png",
+    link: "https://wandy.kro.kr",
+    added: [
+      "플래너(C 파트) 담당: 장소 추가·삭제, 시간·메모 편집",
+      "네이버·구글 지도 연동",
+      "GitHub Actions로 배포 자동화",
+    ],
+    trouble: {
+      headline: "지도 SDK 로드 성공 시 에러 화면 해결",
+      problem:
+        "지도 키와 네트워크가 정상인데도 \"지도를 불러오지 못했어요\" 에러 화면이 표시됨",
+      cause:
+        "useQuery의 queryFn이 성공해도 undefined를 반환했고, TanStack Query는 undefined를 에러로 처리함",
+      solution: "queryFn에서 로드를 await한 뒤 true를 반환하도록 수정",
+      result: "재현 테스트에서 수정 전 error → 수정 후 success 확인",
+      learned:
+        "queryFn은 항상 undefined가 아닌 값을 반환해야 하고, 키가 없는 환경에서는 성공 경로를 따로 검증해야 한다는 점",
     },
   },
 ];
@@ -120,15 +166,29 @@ function renderProjects(data) {
       : title;
 
     // 트러블슈팅: <details>는 클릭하면 펼쳐지는 기본 HTML 태그 (JS 없이 동작)
+    // NOTE: cause(원인), learned(배운 점)는 선택 항목 — 값이 없으면 그 줄은 생략
+    const troubleRows = trouble
+      ? [
+          { label: "문제", text: trouble.problem },
+          { label: "원인", text: trouble.cause },
+          { label: "해결", text: trouble.solution },
+          { label: "결과", text: trouble.result, isResult: true },
+          { label: "배운 점", text: trouble.learned },
+        ]
+          .filter((row) => row.text)
+          .map(
+            (row) =>
+              `<dt>${row.label}</dt><dd${row.isResult ? ' class="trouble__result"' : ""}>${row.text}</dd>`,
+          )
+          .join("")
+      : "";
+
+    // 접혀 있어도 핵심 성과가 보이도록 summary에 headline 표시
     const troubleBox = trouble
       ? `
         <details class="trouble">
-          <summary>Troubleshooting</summary>
-          <dl>
-            <dt>문제</dt><dd>${trouble.problem}</dd>
-            <dt>해결</dt><dd>${trouble.solution}</dd>
-            <dt>결과</dt><dd>${trouble.result}</dd>
-          </dl>
+          <summary>Troubleshooting${trouble.headline ? `<span class="trouble__headline">· ${trouble.headline}</span>` : ""}</summary>
+          <dl>${troubleRows}</dl>
         </details>`
       : "";
 
@@ -143,9 +203,9 @@ function renderProjects(data) {
           <p class="project__meta label">${meta}</p>
           <p class="project__desc">${desc}</p>
           ${diff}
-          ${troubleBox}
           <ul class="tags">${chips}</ul>
         </div>
+        ${troubleBox}
       </article>`;
   });
 
@@ -320,7 +380,7 @@ function initSplash(onDone) {
 const terminalScript = [
   {
     cmd: "whoami",
-    out: '서인석 (또비) <span class="t-key">— Backend · DevOps Developer</span>',
+    out: '서인석 <span class="t-key">— Backend · DevOps Developer</span>',
   },
   {
     cmd: "cat career.txt",
